@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,31 @@ namespace CSM.Controllers
     [Route("auth")]
     public class AuthenticationController : Controller
     {
-        [HttpGet("test")]
-        public ActionResult Index()
+        private readonly IAuthenticationRepository _authentication;
+
+        public AuthenticationController(IAuthenticationRepository authentication)
         {
-            return Ok("test");
+            _authentication = authentication;
+        }
+
+        [HttpGet("signup")]
+        public ActionResult SignUp()
+        {
+            try
+            {
+                var token = _authentication.SignUp(new Model.Authentication() { Email = "test", Password = "test" });
+                if (string.IsNullOrWhiteSpace(token))
+                    return NotFound();
+
+                // 201 Created
+                return Created(string.Empty, token);
+            }
+            catch (Exception ex)
+            {
+                // 500 Internal Server Error
+                return StatusCode(500, ex.Message);
+            }
+            
         }
     }
 }

@@ -18,3 +18,8 @@ C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.RazorTargetAssembly
 C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.dll
 C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.pdb
 C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.genruntimeconfig.cache
+C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Model.dll
+C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Service.dll
+C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Service.pdb
+C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Model.pdb
+C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.csproj.CopyComplete

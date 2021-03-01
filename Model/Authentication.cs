@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-    class Authentication
+    public class Authentication
     {
         public int UserId { get; set; }
         public string Email { get; set; }
