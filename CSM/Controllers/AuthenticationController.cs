@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Model;
 using Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,23 +14,25 @@ namespace CSM.Controllers
     public class AuthenticationController : Controller
     {
         private readonly IAuthenticationRepository _authentication;
+        private IConfiguration _configuration;
 
-        public AuthenticationController(IAuthenticationRepository authentication)
+        public AuthenticationController(IAuthenticationRepository authentication, IConfiguration configuration)
         {
             _authentication = authentication;
+            _configuration = configuration;
         }
 
-        [HttpGet("signup")]
-        public ActionResult SignUp()
+        [HttpPost("signup")]
+        public ActionResult SignUp(Authentication item)
         {
             try
             {
-                var token = _authentication.SignUp(new Model.Authentication() { Email = "test", Password = "test" });
+                var token = _authentication.SignUp(new Model.Authentication() { Email = "test2", Password = "test" });
                 if (string.IsNullOrWhiteSpace(token))
                     return Unauthorized();
 
                 // 201 Created
-                return Created(string.Empty, token);
+                return Created(_configuration["Environment:Dev:Url"].ToString(), token);
             }
             catch (Exception ex)
             {

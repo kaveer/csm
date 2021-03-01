@@ -7,3 +7,6 @@ C:\Users\SD377186\Source\CSM\Model\obj\Debug\netcoreapp3.1\Model.AssemblyInfo.cs
 C:\Users\SD377186\Source\CSM\Model\obj\Debug\netcoreapp3.1\Model.csproj.CoreCompileInputs.cache
 C:\Users\SD377186\Source\CSM\Model\obj\Debug\netcoreapp3.1\Model.dll
 C:\Users\SD377186\Source\CSM\Model\obj\Debug\netcoreapp3.1\Model.pdb
+C:\Users\SD377186\Source\CSM\Model\bin\Debug\netcoreapp3.1\Model.runtimeconfig.json
+C:\Users\SD377186\Source\CSM\Model\bin\Debug\netcoreapp3.1\Model.runtimeconfig.dev.json
+C:\Users\SD377186\Source\CSM\Model\obj\Debug\netcoreapp3.1\Model.genruntimeconfig.cache
