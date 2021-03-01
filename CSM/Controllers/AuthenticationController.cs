@@ -23,11 +23,11 @@ namespace CSM.Controllers
         }
 
         [HttpPost("signup")]
-        public ActionResult SignUp(Authentication item)
+        public ActionResult SignUp([FromBody]Authentication item)
         {
             try
             {
-                var token = _authentication.SignUp(new Model.Authentication() { Email = "test2", Password = "test" });
+                var token = _authentication.SignUp(item);
                 if (string.IsNullOrWhiteSpace(token))
                     return Unauthorized();
 
@@ -40,6 +40,25 @@ namespace CSM.Controllers
                 return StatusCode(500, ex.Message);
             }
             
+        }
+
+        [HttpPost("login")]
+        public ActionResult Login([FromBody]Authentication item)
+        {
+            try
+            {
+                var token = _authentication.LogIn(item);
+                if (string.IsNullOrWhiteSpace(token))
+                    return Unauthorized();
+
+                // 200 OK
+                return Ok(token);
+            }
+            catch (Exception ex)
+            {
+                // 500 Internal Server Error
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

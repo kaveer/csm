@@ -19,6 +19,7 @@ namespace Service.Repository
         {
             _configuration = configuration;
         }
+
         public string SignUp(Authentication item)
         {
             if (!ValidateModel(item))
@@ -40,6 +41,21 @@ namespace Service.Repository
 
             return GenerateToken(item);
 
+        }
+
+        public string LogIn(Authentication item)
+        {
+            if (!ValidateModel(item))
+                throw new Exception("Invalid credential");
+
+            using var context = new CsmContext(this._configuration.GetConnectionString("CsmConnection"));
+            var exist = context.authentications
+                                    .Where(x => x.Email == item.Email && x.Password == EncryptPassword(item.Password))
+                                    .FirstOrDefault();
+            if (exist == null)
+                throw new Exception("User does not exist.");
+
+            return GenerateToken(exist);
         }
 
         private string GenerateToken(Authentication item)
@@ -90,5 +106,7 @@ namespace Service.Repository
 
             return true;
         }
+
+       
     }
 }
