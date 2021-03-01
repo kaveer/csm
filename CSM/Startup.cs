@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Model;
+using Service.ActionFilter;
 using Service.Interface;
 using Service.Repository;
 using System;
@@ -28,7 +29,11 @@ namespace CSM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Dependency injection
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+
+            //Action filters
+            services.AddScoped<AuthorizationActionFilter>();
 
             services.AddControllers();
         }

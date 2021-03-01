@@ -42,3 +42,4 @@ C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel
 C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\SD377186\Source\CSM\CSM\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\SD377186\Source\CSM\CSM\obj\Debug\netcoreapp3.1\CSM.MvcApplicationPartsAssemblyInfo.cs

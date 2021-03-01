@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Service.Repository
@@ -48,9 +49,11 @@ namespace Service.Repository
             if (!ValidateModel(item))
                 throw new Exception("Invalid credential");
 
+            string encryptedPassword = EncryptPassword(item.Password);
+
             using var context = new CsmContext(this._configuration.GetConnectionString("CsmConnection"));
             var exist = context.authentications
-                                    .Where(x => x.Email == item.Email && x.Password == EncryptPassword(item.Password))
+                                    .Where(x => x.Email == item.Email && x.Password == encryptedPassword)
                                     .FirstOrDefault();
             if (exist == null)
                 throw new Exception("User does not exist.");
@@ -88,11 +91,18 @@ namespace Service.Repository
 
         private string EncryptPassword(string password)
         {
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
-            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            String hash = System.Text.Encoding.ASCII.GetString(data);
+            MD5 md5 = new MD5CryptoServiceProvider();
 
-            return hash;
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(password));
+            byte[] result = md5.Hash;
+            StringBuilder strBuilder = new StringBuilder();
+            
+            for (int i = 0; i < result.Length; i++)
+            {
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
         }
 
         private bool ValidateModel(Authentication item)

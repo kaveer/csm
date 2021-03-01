@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Model;
+using Service.ActionFilter;
 using Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace CSM.Controllers
         }
 
         [HttpPost("signup")]
-        public ActionResult SignUp([FromBody]Authentication item)
+        public ActionResult SignUp([FromBody] Authentication item)
         {
             try
             {
@@ -39,11 +40,11 @@ namespace CSM.Controllers
                 // 500 Internal Server Error
                 return StatusCode(500, ex.Message);
             }
-            
+
         }
 
         [HttpPost("login")]
-        public ActionResult Login([FromBody]Authentication item)
+        public ActionResult Login([FromBody] Authentication item)
         {
             try
             {
@@ -59,6 +60,13 @@ namespace CSM.Controllers
                 // 500 Internal Server Error
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [ServiceFilter(typeof(AuthorizationActionFilter))]
+        [HttpGet("test")]
+        public ActionResult Test()
+        {
+            return Ok();
         }
     }
 }
