@@ -25,7 +25,7 @@ namespace CSM.Controllers
             {
                 var token = _authentication.SignUp(new Model.Authentication() { Email = "test", Password = "test" });
                 if (string.IsNullOrWhiteSpace(token))
-                    return NotFound();
+                    return Unauthorized();
 
                 // 201 Created
                 return Created(string.Empty, token);

@@ -10,11 +10,8 @@ namespace Service.Repository
     {
         public string SignUp(Authentication item)
         {
-            if (true)
-            {
-
-            }
-            throw new NotImplementedException();
+            return "test";
+            
         }
     }
 }
