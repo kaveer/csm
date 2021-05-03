@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Service.Repository
 {
@@ -41,7 +42,6 @@ namespace Service.Repository
                 throw new Exception("Fail to sign up");
 
             return GenerateToken(item);
-
         }
 
         public string LogIn(Authentication item)
@@ -107,6 +107,7 @@ namespace Service.Repository
 
         private bool ValidateModel(Authentication item)
         {
+
             if (item == null)
                 return false;
             if (string.IsNullOrWhiteSpace(item.Email))
@@ -114,7 +115,7 @@ namespace Service.Repository
             if (string.IsNullOrWhiteSpace(item.Password))
                 return false;
 
-            return true;
+            return Regex.IsMatch(item.Email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
         }
 
        
