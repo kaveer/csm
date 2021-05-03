@@ -10,7 +10,6 @@ namespace Service.Interface
         string SignUp(Authentication item);
 
         string LogIn(Authentication item);
-
        
     }
 }
